@@ -13,16 +13,16 @@ object SparkKafkaConsumer {
   def main(args: Array[String]): Unit = {
     // is it possible to have more consumers than the number of partitions, in the same group?
     val kafkaParams = Map[String, Object](
-      "bootstrap.servers" -> "172.18.0.3:9092, 172.18.0.4:9092, 172.18.0.5:9092",
+      "bootstrap.servers" -> "localhost:9092",
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer],
-//      "group.id" -> "g1",
-      "auto.offset.reset" -> "none",
+      "group.id" -> "g1",
+      "auto.offset.reset" -> "latest",
       "enable.auto.commit" -> (false: java.lang.Boolean)
     )
-    val conf = new SparkConf().setAppName("kafkaTest").setMaster("local")
-    val ssc = new StreamingContext(conf, Seconds(1))
-    val topics = Array("testP3")
+    val conf = new SparkConf().setAppName("kafkaTest").setMaster("local[2]")
+    val ssc = new StreamingContext(conf, Seconds(5))
+    val topics = Array("test")
     val stream = KafkaUtils.createDirectStream[String, String](
       ssc,
       PreferConsistent,
