@@ -11,6 +11,7 @@
         <jdk.version>1.8</jdk.version>
         <scala.binary.version>2.11</scala.binary.version>
         <scalatest.version>3.0.0</scalatest.version>
+        <scala-maven-plugin.version>3.2.2</scala-maven-plugin.version>
         <spark-core.version>2.1.0</spark-core.version>
         <spark-sql.version>2.1.0</spark-sql.version>
         <spark-streaming.version>2.1.0</spark-streaming.version>
@@ -74,6 +75,7 @@
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
+                <version>${scala-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>scala-compile-first</id>
